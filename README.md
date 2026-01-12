@@ -4,7 +4,34 @@ A **production-oriented, mutli-agent system** that helps users explore Vancouver
 
 This project focuses on **agent behavior** (planning, tool use, memory, and safety), not just chat responses.
 
----
+
+## 🔁 Agent Pipeline
+
+```mermaid
+flowchart LR
+    A[User Input] --> B[Model Callback<br/>Safety Check]
+
+    B -->|Blocked| C[Fixed Safety Response<br/>No LLM Invocation]
+    C --> Z[User]
+
+    B -->|Allowed| D[Root Agent<br/>Orchestrator]
+    D --> E{Task Type?}
+
+    E -->|Address / Location| F[Location Lookup Agent]
+    F --> G[check_address<br/>+ session state]
+    G -->|New address| H[get_location<br/>Google Maps Geocoding]
+    G -->|Duplicate| I[Skip geocode / Ask to refresh]
+    H --> J[Update Session State]
+    I --> J
+
+    E -->|Neighbourhood Info| K[Neighbourhood Info Agent]
+    K --> L[Vertex AI Search Tool<br/>Datastore Retrieval]
+    L --> J
+
+    J --> M[Root Agent<br/>Synthesize Response]
+    M --> N[Answer + Details<br/>Wiki links, context]
+    N --> Z[User]
+```
 
 ## 🌍 What the Agent Does
 
@@ -18,8 +45,6 @@ The Vancouver City Guide assists users by:
 - Responding safely to inappropriate inputs
 
 All interactions are **tool-grounded, stateful, and observable**.
-
----
 
 ## 🧠 Agent Architecture
 
@@ -41,8 +66,6 @@ This is a **multi-agent system** with clear responsibilities:
 - Uses search-grounded retrieval (Vertex AI Search)
 - Returns Wikipedia links and contextual summaries
 
----
-
 ## 🧩 Memory & State
 
 The agent is **stateful** and uses **persistent, session-scoped memory** backed by Vertex AI Session Service.
@@ -53,15 +76,11 @@ This enables:
 - Reduced unnecessary tool calls
 - More human-like interactions within a session
 
----
-
 ## 🔐 Safety & Guardrails
 
 - Profanity and unsafe inputs are intercepted using a `before_model_callback`
 - Unsafe inputs are blocked **before** model invocation
 - Prevents unnecessary LLM calls for disallowed content
-
----
 
 ## ☁️ Deployment & Observability
 
@@ -74,8 +93,6 @@ This enables:
 
 Traces are used as the primary mechanism for debugging and validation.
 
----
-
 ## 🔍 Evaluation Approach
 
 The system is evaluated through:
@@ -87,16 +104,12 @@ The system is evaluated through:
 
 This approach prioritizes **real agent behavior** over synthetic benchmarks.
 
----
-
 ## 🔮 Future Extensions
 
 - **Trip planning & itineraries:** Evolve the guide into a trip-planning assistant that creates location-aware itineraries for day or weekend visits.  
 - **Autonomous actions:** Enable user-approved actions such as bookings, parking reservations, and ticket purchases via third-party APIs.  
 - **Event-aware recommendations:** Surface current and upcoming local events to provide timely, context-aware suggestions.  
 - **Public-facing UI:** Add a lightweight web or mobile interface for broader public access.
-
----
 
 ## 📌 Why This Project
 
