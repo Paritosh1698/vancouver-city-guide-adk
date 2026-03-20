@@ -116,12 +116,12 @@ This approach prioritizes **real agent behavior** over synthetic benchmarks.
 ## 📌 Why This Project
 
 This project demonstrates how to move from:
-> *“a conversational demo”*  
+> *a conversational prototype*  
 to  
-> *a production-oriented, agentic system designed for real users.*
+> *a production-oriented, agentic system designed for real users*
 
 It emphasizes:
-- explicit tool orchestration
-- stateful reasoning
-- safety-first design
-- cloud-native deployment
+- Explicit tool orchestration
+- Stateful reasoning
+- Safety-first design
+- Cloud-native deployment
