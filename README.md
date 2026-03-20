@@ -4,7 +4,7 @@ A **production-oriented, mutli-agent system** that helps users explore Vancouver
 
 Check out this for the recorded demo: https://www.loom.com/share/c4e66d0bff324bcab23b14630794861e
 
-This project focuses on **agent behavior** (planning, tool use, memory, and safety), not just chat responses.
+This project focuses on **agent behavior** (planning, tool-calling, memory, and safety), not just chat responses.
 
 
 ## 🔁 Agent Pipeline
