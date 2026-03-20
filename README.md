@@ -2,6 +2,8 @@
 
 A **production-oriented, mutli-agent system** that helps users explore Vancouver by understanding their location, identifying neighbourhoods, and providing grounded local context — built using **Google Agent Development Kit (ADK)** and deployed on **Vertex AI Agent Engine**.
 
+Check out this for the recorded demo: https://www.loom.com/share/c4e66d0bff324bcab23b14630794861e
+
 This project focuses on **agent behavior** (planning, tool use, memory, and safety), not just chat responses.
 
 
